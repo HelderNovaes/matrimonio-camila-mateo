@@ -8,9 +8,18 @@ const html = fs.readFileSync(htmlPath, "utf8");
 
 const checks = [
   {
-    name: "primary RSVP uses WhatsApp with Bolivia placeholder number",
+    name: "primary confirmation uses WhatsApp with Bolivia placeholder number",
     pass: /https:\/\/wa\.me\/591700123456\?text=/.test(html)
       && /Confirmar por WhatsApp/.test(html),
+  },
+  {
+    name: "confusing RSVP label is not visible",
+    pass: !/>RSVP</.test(html) && !/RSVP<\/h3>/.test(html),
+  },
+  {
+    name: "top confirmation action uses WhatsApp logo mark",
+    pass: /class="nav-cta"[\s\S]*class="whatsapp-mark"/.test(html)
+      && /aria-label="Confirmar por WhatsApp"/.test(html),
   },
   {
     name: "photo system uses one replaceable couple photo path",
