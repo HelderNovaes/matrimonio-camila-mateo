@@ -49,6 +49,23 @@ const checks = [
       && /id="historia"/.test(html),
   },
   {
+    name: "simple countdown section is shown",
+    pass: /id="cuenta-regresiva"/.test(html)
+      && /Cuenta regresiva/.test(html)
+      && /2027-03-14T16:00:00-04:00/.test(html),
+  },
+  {
+    name: "countdown shows days hours minutes and seconds",
+    pass: /data-countdown-value="days"/.test(html)
+      && /data-countdown-value="hours"/.test(html)
+      && /data-countdown-value="minutes"/.test(html)
+      && /data-countdown-value="seconds"/.test(html)
+      && /Días/.test(html)
+      && /Horas/.test(html)
+      && /Minutos/.test(html)
+      && /Segundos/.test(html),
+  },
+  {
     name: "romantic story copy is restored",
     pass: /Nuestra historia/.test(html)
       && /Una celebración sencilla, íntima y llena de alegría/.test(html)

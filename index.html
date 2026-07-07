@@ -181,6 +181,56 @@
   .btn-outline{border-color:var(--line);color:var(--ink);background:transparent;}
   .btn-outline:hover{border-color:var(--olive);background:var(--olive-soft);}
 
+  .countdown{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .countdown-inner{
+    width:min(920px,100%);
+    margin:0 auto;
+    padding:clamp(2.8rem,7vw,4.5rem) 1.25rem;
+    text-align:center;
+  }
+  .countdown h2{
+    margin-top:.65rem;
+    font-size:clamp(2rem,5vw,3.4rem);
+    font-style:italic;
+  }
+  .countdown-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:.9rem;
+    margin-top:1.7rem;
+  }
+  .countdown-item{
+    min-height:130px;
+    display:grid;
+    place-items:center;
+    gap:.35rem;
+    padding:1.25rem .8rem;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fbf7ef;
+  }
+  .countdown-number{
+    color:var(--ink);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:clamp(2.1rem,6vw,3.4rem);
+    font-weight:600;
+    line-height:1;
+  }
+  .countdown-label{
+    color:var(--muted);
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .countdown-message{
+    margin-top:1.2rem;
+    font-size:.88rem;
+  }
+
   main{background:var(--ivory);}
   section{scroll-margin-top:96px;}
   .section{
@@ -428,6 +478,8 @@
     .photo-panel{min-height:360px;}
     .detail-grid{grid-template-columns:1fr;}
     .detail-card{min-height:unset;}
+    .countdown-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .countdown-item{min-height:112px;}
     .floating-whatsapp{
       display:none;
     }
@@ -464,6 +516,32 @@
     </div>
   </div>
 </header>
+
+<section class="countdown" id="cuenta-regresiva" data-countdown-target="2027-03-14T16:00:00-04:00">
+  <div class="countdown-inner">
+    <p class="kicker">Cuenta regresiva</p>
+    <h2>Falta para la boda</h2>
+    <div class="countdown-grid" aria-label="Cuenta regresiva para la boda">
+      <div class="countdown-item">
+        <strong class="countdown-number" data-countdown-value="days">000</strong>
+        <span class="countdown-label">Días</span>
+      </div>
+      <div class="countdown-item">
+        <strong class="countdown-number" data-countdown-value="hours">00</strong>
+        <span class="countdown-label">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <strong class="countdown-number" data-countdown-value="minutes">00</strong>
+        <span class="countdown-label">Minutos</span>
+      </div>
+      <div class="countdown-item">
+        <strong class="countdown-number" data-countdown-value="seconds">00</strong>
+        <span class="countdown-label">Segundos</span>
+      </div>
+    </div>
+    <p class="countdown-message" data-countdown-message>14 de marzo de 2027 - 16:00 hrs</p>
+  </div>
+</section>
 
 <main>
   <section class="section" id="historia">
@@ -581,5 +659,41 @@
 <footer>
   Camila &amp; Mateo - 14 de marzo de 2027
 </footer>
+<script>
+  (() => {
+    const countdown = document.querySelector("[data-countdown-target]");
+    if (!countdown) return;
+
+    const target = new Date(countdown.dataset.countdownTarget).getTime();
+    const values = {
+      days: countdown.querySelector('[data-countdown-value="days"]'),
+      hours: countdown.querySelector('[data-countdown-value="hours"]'),
+      minutes: countdown.querySelector('[data-countdown-value="minutes"]'),
+      seconds: countdown.querySelector('[data-countdown-value="seconds"]')
+    };
+    const message = countdown.querySelector("[data-countdown-message]");
+    const pad = (value, size = 2) => String(value).padStart(size, "0");
+
+    function updateCountdown(){
+      const remaining = Math.max(0, target - Date.now());
+      const days = Math.floor(remaining / 86400000);
+      const hours = Math.floor((remaining % 86400000) / 3600000);
+      const minutes = Math.floor((remaining % 3600000) / 60000);
+      const seconds = Math.floor((remaining % 60000) / 1000);
+
+      values.days.textContent = pad(days, 3);
+      values.hours.textContent = pad(hours);
+      values.minutes.textContent = pad(minutes);
+      values.seconds.textContent = pad(seconds);
+
+      if (remaining === 0 && message) {
+        message.textContent = "Hoy celebramos nuestro gran día";
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
+</script>
 </body>
 </html>
