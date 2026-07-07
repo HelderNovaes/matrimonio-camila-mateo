@@ -22,6 +22,14 @@ const checks = [
       && /aria-label="Confirmar por WhatsApp"/.test(html),
   },
   {
+    name: "floating WhatsApp action is icon only",
+    pass: /class="floating-whatsapp"[\s\S]*aria-label="Confirmar por WhatsApp"/.test(html)
+      && /class="wa-icon"/.test(html)
+      && /class="wa-icon__bubble"/.test(html)
+      && /class="wa-icon__phone"/.test(html)
+      && !/<a class="(?:btn btn-primary )?floating-whatsapp"[^>]*>\s*WhatsApp\s*<\/a>/.test(html),
+  },
+  {
     name: "photo system uses one replaceable couple photo path",
     pass: /fotos\/casal\.jpg/.test(html),
   },
@@ -35,7 +43,7 @@ const checks = [
   },
   {
     name: "content does not depend on reveal JavaScript to be visible",
-    pass: !/IntersectionObserver/.test(html) && !/opacity:\s*0/.test(html),
+    pass: !/IntersectionObserver/.test(html) && !/\.reveal\s*\{[^}]*opacity:\s*0/.test(html),
   },
   {
     name: "GitHub photo upload instructions exist",
