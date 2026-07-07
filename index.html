@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila & Mateo - Nos Casamos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#f8f3eb;
+    --paper:#fffdf8;
+    --ink:#2d2923;
+    --muted:#6f675e;
+    --olive:#4f5d45;
+    --olive-soft:#dde4d5;
+    --rose:#d8b4a0;
+    --gold:#b98f4d;
+    --line:#ded3c4;
+    --whatsapp:#168a4a;
+    --shadow:0 24px 70px rgba(45,41,35,.16);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:"Jost",Arial,sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05;}
+  p{color:var(--muted);}
+
+  .site-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:20;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:1rem;
+    padding:.82rem clamp(1rem,4vw,3rem);
+    background:rgba(248,243,235,.93);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(12px);
+  }
+  .brand{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:1.15rem;
+    letter-spacing:.12em;
+    white-space:nowrap;
+  }
+  .nav-links{
+    display:flex;
+    justify-content:center;
+    gap:clamp(1rem,3vw,2.4rem);
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .nav-links a{color:#756d62;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    border:1px solid var(--olive);
+    border-radius:999px;
+    color:var(--olive);
+    font-size:.72rem;
+    font-weight:500;
+    letter-spacing:.14em;
+    padding:.58rem .9rem;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .hero{
+    min-height:92vh;
+    display:grid;
+    place-items:center;
+    padding:8rem 1.2rem 4rem;
+    text-align:center;
+    color:#fff;
+    background-image:
+      linear-gradient(180deg,rgba(20,18,16,.22),rgba(20,18,16,.7)),
+      url("fotos/casal.jpg"),
+      url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=82");
+    background-position:center;
+    background-size:cover;
+  }
+  .hero-content{
+    width:min(760px,100%);
+    display:grid;
+    justify-items:center;
+    gap:1.2rem;
+  }
+  .eyebrow,
+  .kicker{
+    color:var(--gold);
+    font-size:.74rem;
+    font-weight:500;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+  }
+  .hero .eyebrow{color:#f2d8bd;}
+  .hero h1{
+    font-size:clamp(3.9rem,12vw,8.5rem);
+    font-style:italic;
+    text-wrap:balance;
+  }
+  .hero h1 span{
+    display:block;
+    font-size:clamp(1.8rem,4vw,2.7rem);
+    color:#f2d8bd;
+    font-style:normal;
+    margin:.15rem 0;
+  }
+  .hero-date{
+    color:#fff;
+    max-width:680px;
+    padding:.85rem 1.3rem;
+    border-top:1px solid rgba(255,255,255,.5);
+    border-bottom:1px solid rgba(255,255,255,.5);
+    font-size:clamp(.86rem,2.2vw,1rem);
+    font-weight:400;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .hero-date span{display:inline-block;}
+  .hero-date span + span::before{content:" - ";}
+  .hero-actions,
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:.85rem;
+    margin-top:.4rem;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:.95rem 1.35rem;
+    border-radius:999px;
+    border:1px solid transparent;
+    font-size:.77rem;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--whatsapp);color:#fff;}
+  .btn-primary:hover{background:#0f743c;}
+  .btn-light{background:#fff;color:var(--ink);}
+  .btn-light:hover{background:#f5eadc;}
+  .btn-dark{background:var(--ink);color:#fff;}
+  .btn-outline{border-color:var(--line);color:var(--ink);background:transparent;}
+  .btn-outline:hover{border-color:var(--olive);background:var(--olive-soft);}
+
+  main{background:var(--ivory);}
+  section{scroll-margin-top:96px;}
+  .section{
+    width:min(1120px,100%);
+    margin:0 auto;
+    padding:clamp(4rem,9vw,7rem) 1.25rem;
+  }
+  .section-head{
+    max-width:720px;
+    margin:0 auto clamp(2rem,5vw,3rem);
+    text-align:center;
+  }
+  .section-head h2{
+    margin-top:.7rem;
+    font-size:clamp(2.35rem,6vw,4.2rem);
+    font-style:italic;
+    text-wrap:balance;
+  }
+  .section-head p{
+    margin:1rem auto 0;
+    max-width:620px;
+    font-size:1rem;
+  }
+
+  .story-grid{
+    display:grid;
+    grid-template-columns:minmax(280px,.9fr) minmax(0,1fr);
+    gap:clamp(2rem,6vw,4.5rem);
+    align-items:center;
+  }
+  .photo-panel{
+    min-height:520px;
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    background-image:
+      linear-gradient(180deg,rgba(45,41,35,.04),rgba(45,41,35,.18)),
+      url("fotos/casal.jpg"),
+      url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=82");
+    background-position:center;
+    background-size:cover;
+  }
+  .story-copy{
+    display:grid;
+    gap:1.15rem;
+  }
+  .story-copy h2{
+    font-size:clamp(2.4rem,6vw,4.4rem);
+    font-style:italic;
+  }
+  .story-copy .lead{
+    color:#4f4941;
+    font-size:1.08rem;
+  }
+  .mini-list{
+    display:grid;
+    gap:.85rem;
+    margin-top:.4rem;
+  }
+  .mini-list div{
+    border-left:3px solid var(--rose);
+    padding-left:1rem;
+  }
+  .mini-list strong{
+    display:block;
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  .details-band{
+    background:#f1eee5;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .detail-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1rem;
+  }
+  .detail-card{
+    min-height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:1rem;
+    padding:1.45rem;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .detail-card span{
+    color:var(--gold);
+    font-size:.7rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+  }
+  .detail-card h3{
+    font-size:1.6rem;
+    font-style:italic;
+  }
+  .detail-card p{font-size:.94rem;}
+
+  .gifts{
+    display:grid;
+    grid-template-columns:minmax(0,.9fr) minmax(280px,1fr);
+    gap:clamp(1.5rem,5vw,3rem);
+    align-items:stretch;
+  }
+  .gift-note,
+  .contact-card{
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:clamp(1.5rem,4vw,2.5rem);
+  }
+  .gift-note h3,
+  .contact-card h3{
+    margin-bottom:.8rem;
+    font-size:clamp(1.8rem,4vw,2.4rem);
+    font-style:italic;
+  }
+  .gift-line{
+    margin-top:1.2rem;
+    color:var(--gold);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:1.35rem;
+  }
+
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr minmax(280px,420px);
+    gap:clamp(1.5rem,5vw,3.2rem);
+    align-items:center;
+  }
+  .contact-copy h2{
+    margin:.65rem 0 1rem;
+    font-size:clamp(2.4rem,6vw,4rem);
+    font-style:italic;
+  }
+  .contact-card{
+    display:grid;
+    gap:1rem;
+    text-align:center;
+  }
+  .phone-link{
+    color:var(--olive);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:clamp(1.9rem,5vw,2.6rem);
+    line-height:1;
+  }
+  .small-note{
+    color:#8a8175;
+    font-size:.82rem;
+  }
+  .floating-whatsapp{
+    position:fixed;
+    right:1rem;
+    bottom:1rem;
+    z-index:30;
+    box-shadow:0 12px 35px rgba(22,138,74,.28);
+  }
+
+  footer{
+    padding:2.2rem 1rem;
+    text-align:center;
+    color:#958c80;
+    border-top:1px solid var(--line);
+    font-size:.74rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+
+  @media (max-width:900px){
+    .detail-grid{grid-template-columns:repeat(2,1fr);}
+    .story-grid,
+    .gifts,
+    .contact-wrap{grid-template-columns:1fr;}
+    .photo-panel{min-height:440px;}
+  }
+
+  @media (max-width:640px){
+    .site-nav{
+      grid-template-columns:1fr auto;
+      gap:.65rem;
+      padding:.65rem .9rem .75rem;
+    }
+    .brand{font-size:1rem;}
+    .nav-cta{
+      grid-column:2;
+      grid-row:1;
+      justify-self:end;
+      padding:.48rem .72rem;
+    }
+    .nav-links{
+      grid-column:1 / -1;
+      grid-row:2;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:.2rem;
+      font-size:.66rem;
+      letter-spacing:.06em;
+      text-align:center;
+    }
+    .nav-links a{
+      min-width:0;
+      overflow:hidden;
+    }
+    .hero{
+      min-height:88vh;
+      padding-top:8.4rem;
+      background-position:center;
+    }
+    .hero-date{
+      width:100%;
+      line-height:1.7;
+      letter-spacing:.08em;
+      padding-inline:.6rem;
+    }
+    .hero-date span{
+      display:block;
+    }
+    .hero-date span + span::before{
+      content:"";
+    }
+    .hero-actions,
+    .cta-row{
+      width:100%;
+    }
+    .btn{
+      width:100%;
+      max-width:320px;
+      padding-inline:1rem;
+    }
+    .section{padding:3.7rem 1rem;}
+    .photo-panel{min-height:360px;}
+    .detail-grid{grid-template-columns:1fr;}
+    .detail-card{min-height:unset;}
+    .floating-whatsapp{
+      display:none;
+    }
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegacion principal">
+  <a href="#inicio" class="brand">C &amp; M</a>
+  <div class="nav-links">
+    <a href="#historia">Historia</a>
+    <a href="#detalles">Detalles</a>
+    <a href="#regalos">Regalos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a class="nav-cta" href="https://wa.me/591700123456?text=Hola%20Camila%20y%20Mateo%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.">RSVP</a>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="hero-content">
+    <p class="eyebrow">Nos casamos</p>
+    <h1>Camila<span>&amp;</span>Mateo</h1>
+    <p class="hero-date"><span>14 de marzo de 2027</span><span>Santa Cruz de la Sierra</span></p>
+    <div class="hero-actions" aria-label="Acciones principales">
+      <a class="btn btn-primary" href="https://wa.me/591700123456?text=Hola%20Camila%20y%20Mateo%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.">Confirmar por WhatsApp</a>
+      <a class="btn btn-light" href="#detalles">Ver detalles</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="historia">
+    <div class="story-grid">
+      <div class="photo-panel" role="img" aria-label="Foto de Camila y Mateo"></div>
+      <div class="story-copy">
+        <p class="kicker">Nuestra historia</p>
+        <h2>Una celebración sencilla, íntima y llena de alegría</h2>
+        <p class="lead">Queremos compartir este día con las personas que han sido parte de nuestro camino. Será una tarde para celebrar el amor, la familia y el comienzo de una nueva etapa.</p>
+        <div class="mini-list">
+          <div>
+            <strong>La ceremonia</strong>
+            <p>Un momento breve y especial para decir sí frente a quienes más queremos.</p>
+          </div>
+          <div>
+            <strong>La recepción</strong>
+            <p>Cena, música y una celebración tranquila para disfrutar juntos.</p>
+          </div>
+          <div>
+            <strong>La confirmación</strong>
+            <p>Por favor avisanos por WhatsApp para organizar mejor los lugares.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="details-band" id="detalles">
+    <div class="section">
+      <div class="section-head">
+        <p class="kicker">Los detalles</p>
+        <h2>Todo lo importante, sin complicarlo</h2>
+        <p>Guarda la fecha y confirma tu asistencia cuando puedas.</p>
+      </div>
+
+      <div class="detail-grid">
+        <article class="detail-card">
+          <span>Fecha</span>
+          <div>
+            <h3>14 de marzo</h3>
+            <p>Domingo, 2027</p>
+          </div>
+        </article>
+        <article class="detail-card">
+          <span>Ceremonia</span>
+          <div>
+            <h3>16:00 hrs</h3>
+            <p>Iglesia Nuestra Señora del Carmen</p>
+          </div>
+        </article>
+        <article class="detail-card">
+          <span>Recepción</span>
+          <div>
+            <h3>18:30 hrs</h3>
+            <p>Jardines Villa Aurora, Santa Cruz</p>
+          </div>
+        </article>
+        <article class="detail-card">
+          <span>Vestimenta</span>
+          <div>
+            <h3>Elegante formal</h3>
+            <p>Tonos tierra, verde oliva o colores suaves.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-dark" href="https://wa.me/591700123456?text=Hola%20Camila%20y%20Mateo%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.">Confirmar por WhatsApp</a>
+        <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Jardines%20Villa%20Aurora%20Santa%20Cruz%20Bolivia">Ver ubicación</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="regalos">
+    <div class="gifts">
+      <div class="section-head" style="text-align:left;margin:0;">
+        <p class="kicker">Regalos</p>
+        <h2>Tu presencia es nuestro mejor regalo</h2>
+        <p>Si deseas tener un detalle con nosotros, puedes hacerlo el día del evento o usar los datos de ejemplo mientras definimos la información final.</p>
+      </div>
+      <div class="gift-note">
+        <h3>Lluvia de sobres</h3>
+        <p>La información bancaria final se puede actualizar después, igual que las fotos del sitio.</p>
+        <p class="gift-line">Cuenta: 123-456789-0 - Banco Nacional</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="details-band" id="contacto">
+    <div class="section contact-wrap">
+      <div class="contact-copy">
+        <p class="kicker">Confirma tu asistencia</p>
+        <h2>Escríbenos por WhatsApp</h2>
+        <p>Usaremos este número genérico de Bolivia por ahora. Luego podemos cambiarlo por el contacto real de los novios o de la organización.</p>
+      </div>
+      <div class="contact-card">
+        <h3>RSVP</h3>
+        <a class="phone-link" href="tel:+591700123456">+591 700 123 456</a>
+        <a class="btn btn-primary" href="https://wa.me/591700123456?text=Hola%20Camila%20y%20Mateo%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.">Confirmar por WhatsApp</a>
+        <p class="small-note">Mensaje listo para enviar.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<a class="btn btn-primary floating-whatsapp" href="https://wa.me/591700123456?text=Hola%20Camila%20y%20Mateo%2C%20confirmo%20mi%20asistencia%20a%20la%20boda.">WhatsApp</a>
+
+<footer>
+  Camila &amp; Mateo - 14 de marzo de 2027
+</footer>
+</body>
+</html>
