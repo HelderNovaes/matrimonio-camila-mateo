@@ -2,6 +2,12 @@
 
 Pagina estatica em HTML/CSS para convite de casamento.
 
+## Links
+
+- Repositorio: https://github.com/HelderNovaes/matrimonio-camila-mateo
+- Pagina publicada: https://heldernovaes.github.io/matrimonio-camila-mateo/
+- Subir fotos: https://github.com/HelderNovaes/matrimonio-camila-mateo/upload/main/fotos
+
 ## Como trocar a foto
 
 1. Entre na pasta `fotos`.
