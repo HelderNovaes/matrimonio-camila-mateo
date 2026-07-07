@@ -5,7 +5,6 @@ const root = path.resolve(__dirname, "..");
 const htmlPath = path.join(root, "index.html");
 const photosGuidePath = path.join(root, "fotos", "README.md");
 const html = fs.readFileSync(htmlPath, "utf8");
-const classicPlanText = "Un sitio web personalizado con los nombres de los novios, cuenta regresiva, detalles de la iglesia/fiesta con mapas, y botón de confirmación de asistencia";
 
 const checks = [
   {
@@ -50,14 +49,14 @@ const checks = [
       && /id="historia"/.test(html),
   },
   {
-    name: "classic wedding plan text is shown exactly",
-    pass: html.includes(classicPlanText),
+    name: "romantic story copy is restored",
+    pass: /Nuestra historia/.test(html)
+      && /Una celebración sencilla, íntima y llena de alegría/.test(html)
+      && /Queremos compartir este día/.test(html),
   },
   {
-    name: "old romantic story copy is removed",
-    pass: !/Nuestra historia/.test(html)
-      && !/Una celebración sencilla/.test(html)
-      && !/Queremos compartir este día/.test(html),
+    name: "classic plan description is not shown",
+    pass: !/Un sitio web personalizado con los nombres de los novios/.test(html),
   },
 ];
 
